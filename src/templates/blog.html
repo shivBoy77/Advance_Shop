@@ -1,0 +1,312 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<main>
+  <!--? slider Area Start-->
+  {% comment %} <div class="slider-area">
+    <div class="slider-active">
+      <div
+        class="single-slider hero-overly2 slider-height2 d-flex align-items-center slider-bg2"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-6 col-lg-8 col-md-8">
+              <div class="hero__caption hero__caption2">
+                <h1 data-animation="fadeInUp" data-delay=".4s">Blog</h1>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="index.html">Home</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Blog</a></li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+  <!-- slider Area End-->
+  <!-- Hero Area End-->
+  <!--? Blog Area Start-->
+  <section class="blog_area section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mb-5 mb-lg-0">
+          <div class="blog_left_sidebar">
+          {% for blog in blog_list %}
+            <article class="blog_item">
+              <div class="blog_item_img">
+                <img
+                  class="card-img rounded-0"
+                  src="{{ blog.thumbnail.url }}"
+                  alt=""
+                />
+                <a href="#" class="blog_item_date">
+                  <h3>15</h3>
+                  <p>Jan</p>
+                </a>
+              </div>
+              <div class="blog_details">
+                <a class="d-inline-block" href="blog_details.html">
+                  <h2 class="blog-head" style="color: #2d2d2d">
+                    {{ blog.title }}
+                  </h2>
+                </a>
+                <p>
+                  {{ blog.overview }}
+                </p>
+                <ul class="blog-info-link">
+                  <li>
+                    <a href="#"><i class="fa fa-user"></i>{{ blog.author.user.username }}</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-eye"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><a href="#"><i class="fa fa-comments"></i>{{ blog.comment_count }}</a>
+                  </li>
+                </ul>
+              </div>
+            </article>
+            {% endfor %}
+            <nav class="blog-pagination justify-content-center d-flex">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a href="#" class="page-link" aria-label="Previous">
+                    <i class="ti-angle-left"></i>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a href="#" class="page-link">1</a>
+                </li>
+                <li class="page-item active">
+                  <a href="#" class="page-link">2</a>
+                </li>
+                <li class="page-item">
+                  <a href="#" class="page-link" aria-label="Next">
+                    <i class="ti-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="blog_right_sidebar">
+            <aside class="single_sidebar_widget search_widget">
+              <form action="#">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search Keyword"
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Search Keyword'"
+                    />
+                    <div class="input-group-append">
+                      <button class="btns" type="button">
+                        <i class="ti-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </form>
+            </aside>
+            <aside class="single_sidebar_widget post_category_widget">
+              <h4 class="widget_title" style="color: #2d2d2d">Category</h4>
+              <ul class="list cat-list">
+              {% for cat in category_count %}
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>{{ categories__title }}</p>
+                    <p>{{ categories__title__count }}</p>
+                  </a>
+                </li>
+              {% endfor %}
+              </ul>
+            </aside>
+            <aside class="single_sidebar_widget popular_post_widget">
+              <h3 class="widget_title" style="color: #2d2d2d">Recent Post</h3>
+              {% for obj in latest %}
+              <div class="media post_item">
+                <img src="{{ obj.thumbnail.url }}" alt="post" style="width:150px" />
+                <div class="media-body">
+                  <a href="#">
+                    <h3 style="color: #2d2d2d">{{obj.title}}</h3>
+                  </a>
+                  <p><i class="far fa-clock"></i>  {{ obj.timestamp|timesince }}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </aside>
+            <aside class="single_sidebar_widget tag_cloud_widget">
+              <h4 class="widget_title" style="color: #2d2d2d">Tag Clouds</h4>
+              <ul class="list">
+                <li>
+                  <a href="#">project</a>
+                </li>
+                <li>
+                  <a href="#">love</a>
+                </li>
+                <li>
+                  <a href="#">technology</a>
+                </li>
+                <li>
+                  <a href="#">travel</a>
+                </li>
+                <li>
+                  <a href="#">restaurant</a>
+                </li>
+                <li>
+                  <a href="#">life style</a>
+                </li>
+                <li>
+                  <a href="#">design</a>
+                </li>
+                <li>
+                  <a href="#">illustration</a>
+                </li>
+              </ul>
+            </aside>
+
+            <aside class="single_sidebar_widget instagram_feeds">
+              <h4 class="widget_title" style="color: #2d2d2d">
+                Instagram Feeds
+              </h4>
+              <ul class="instagram_row flex-wrap">
+                <li>
+                  <a href="#">
+                    <img
+                      class="img-fluid"
+                      src="{% static 'assets/img/post/post_5.png'%}"
+                      alt=""
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img
+                      class="img-fluid"
+                      src="{% static 'assets/img/post/post_6.png'%}"
+                      alt=""
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img
+                      class="img-fluid"
+                      src="{% static 'assets/img/post/post_7.png'%}"
+                      alt=""
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img
+                      class="img-fluid"
+                      src="{% static 'assets/img/post/post_8.png'%}"
+                      alt=""
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img
+                      class="img-fluid"
+                      src="{% static 'assets/img/post/post_9.png'%}"
+                      alt=""
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img
+                      class="img-fluid"
+                      src="{% static 'assets/img/post/post_10.png'%}"
+                      alt=""
+                    />
+                  </a>
+                </li>
+              </ul>
+            </aside>
+            <aside class="single_sidebar_widget newsletter_widget">
+              <h4 class="widget_title" style="color: #2d2d2d">Newsletter</h4>
+              {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+              {% endif %}
+              <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Enter email'"
+                    placeholder="Enter email"
+                    required
+                    value="{{ email }}"
+                  />
+                </div>
+                <button
+                  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                  type="submit"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </aside>
+            <aside class="single_sidebar_widget newsletter_widget">
+              <h4 class="widget_title" style="color: #2d2d2d">
+                Don't want notifications anymore?
+              </h4>
+              {% comment %} <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Enter email'"
+                    placeholder="Enter email"
+                    required
+                    value="{{ form_U.email.value }}"
+                  />
+                </div> {% endcomment %}
+                <a href="/Un_sub_news">
+                <button
+                  href="/Un_sub_news"
+                  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                  type="submit"
+                >
+                  Click here
+                </button>
+                </a>
+              </form>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Blog Area End -->
+</main>
+<!-- Scroll Up -->
+<div id="back-top">
+  <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+{% endblock content %}
